@@ -4,6 +4,6 @@ pretrainedNNs=('MobileNet'  'ResNet152' 'ResNet101' 'ResNet50' 'ResNet50V2' 'Res
 for pretrainedNN in ${pretrainedNNs[@]}; 
 do
    # echo $pretrainedNN
-	python train_TL_Gen.py  $pretrainedNN  "20"
+	python test_TL_Gen.py  $pretrainedNN  "20"
 done
 

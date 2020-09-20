@@ -19,11 +19,16 @@ import argparse
 
 import numpy as np
 import random
+#import warnings
+#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'  # or any {'0', '1', '2'}
 import tensorflow as tf
 import sys
 
 from conf_mtrx_plt import plot_confusion_matrix
 
+#with warnings.catch_warnings():
+#    warnings.simplefilter("ignore")
+    
 # Set random seeds to ensure the reproducible results
 SEED = 309
 np.random.seed(SEED)
@@ -141,21 +146,30 @@ if __name__ == '__main__':
 
     # Evaluation, please make sure that your training model uses "accuracy" as metrics, i.e., metrics=['accuracy']
     evs, prds = evaluate(X_test, y_test, pretrainedNN, n)
+    print('sys.argv', sys.argv)
+    print("loos, accuracy", evs)
+    with open("results.txt", "a") as myfile:
+        myfile.write('\n')
+        for listitem in sys.argv:
+            myfile.write('%s \t' % listitem)
+        for listitem in evs:
+            myfile.write('%s \t' % listitem)
+
     #print("evs",evs)
     #print(type(y_test), prds.shape)
-    max_index_prds = np.argmax(prds, axis=1)
+    #max_index_prds = np.argmax(prds, axis=1)
     #print(max_index_prds)
-    max_index_ys = np.argmax(y_test, axis=1)
+    #max_index_ys = np.argmax(y_test, axis=1)
     #print(max_index_ys)
-    from sklearn.metrics import confusion_matrix
-    cm = confusion_matrix(y_true=max_index_ys, y_pred=max_index_prds)
+    #from sklearn.metrics import confusion_matrix
+    #cm = confusion_matrix(y_true=max_index_ys, y_pred=max_index_prds)
 
     #cm = tf.math.confusion_matrix(labels=max_index_ys, predictions=max_index_prds)    
-    print("Confusion matrixion_matrix", cm)
+    #print("Confusion matrixion_matrix", cm)
     
-    print("loos, accuracy", evs)
+    #print("loos, accuracy", evs)
     
-    plot_confusion_matrix(cm,range(77))
+    #plot_confusion_matrix(cm,range(77))
 
 
     #print("loss={}, accuracy={}".format(loss, accuracy))
