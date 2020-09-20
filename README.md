@@ -7,7 +7,7 @@ where pretrainedNN is a pretrained image nets including: pretrainedNNs=('ResNet5
 Example:
 % python train_TL_Gen.py 'ResNet50V2' 100 
  
-Or, to run all model type ./shruns.sh 
+Or, to run all model type ./shruns.sh (after chmod +x shruns.sh) 
 The testing applies the trained/saved model in the folder "model/" to predict the outputs of the images in the folder "data/test/" 
 For testing type:
 % python test_TL_Gen.py 'pretrainedNN' N
